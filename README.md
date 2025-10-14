@@ -44,6 +44,8 @@ We can now run the script with `-execute "path/to/script.s1" "%folder%" "graph1"
 
 
 ### Other commands
-You can provide a seed to the PRNG using the `-seed [value]` instruction. For a short version of this documentation use the `-help` instruction.
+You can, at any time, provide a seed to the PRNG using the `-seed [value]` instruction. The result of all instructions should be deterministic when a seed is provided and the order of operations is kept. If no seed is provided, the PRNG is initialized with a value from `std::random_device()`.
+
+For a short version of this documentation use the `-help` instruction.
 
 
