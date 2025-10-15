@@ -1,0 +1,9 @@
+-execute "../scripts/scaling_test_template.s1"
+    "%NODES%"   "%BASE_PATH%/input/gen_1000_nodes.tsv"
+    "%EDGES%"   "%BASE_PATH%/input/gen_1000_edges.tsv"
+    "%OPATH%"   "%BASE_PATH%/output"
+    "%FNAME%"	"gen_1000"
+
+    "%NAME%"    "Artificial dataset (degree-distribution)"
+    "%AUTHOR%"	"Benjamin E. Raabe"
+    "%LICENSE%"	"Creative Commons 0 - Public Domain"    

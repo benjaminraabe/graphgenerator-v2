@@ -1,0 +1,30 @@
+-Seed "Test2025"
+
+-read   +nodefile "%NODES%"
+        +edgefile "%EDGES%"
+        +arg name "%NAME%"
+        +arg AUTHOR "%AUTHOR%"
+        +arg LICENSE "%LICENSE%"
+-save   "%OPATH%/%FNAME%_model.m1"
+
+
+-generate   "%OPATH%/%FNAME%_nodes_x1.tsv" "%OPATH%/%FNAME%_edges_x1.tsv" 1
+
+-Scale 2
+-generate   "%OPATH%/%FNAME%_nodes_x2.tsv" "%OPATH%/%FNAME%_edges_x2.tsv" 1
+
+-Scale 5
+-generate   "%OPATH%/%FNAME%_nodes_x10.tsv" "%OPATH%/%FNAME%_edges_x10.tsv" 1
+
+-Scale 10
+-generate   "%OPATH%/%FNAME%_nodes_x100.tsv" "%OPATH%/%FNAME%_edges_x100.tsv" 1
+
+
+-load   "%OPATH%/%FNAME%_model.m1"
+
+-Scale 0.5
+-generate   "%OPATH%/%FNAME%_nodes_x05.tsv" "%OPATH%/%FNAME%_edges_x05.tsv" 1
+
+-Scale 0.5
+-generate   "%OPATH%/%FNAME%_nodes_x025.tsv" "%OPATH%/%FNAME%_edges_x025.tsv" 1
+
