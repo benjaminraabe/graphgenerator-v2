@@ -202,7 +202,7 @@ int main(int argc, char * argv[]) {
 
 
     std::cout  << std::endl  << std::endl << "Finished." << std::endl;
-    std::cout << instruction_counter << " instruction(s) run." << std::endl;
-    std::cout << script_counter << " script(s) calls." << std::endl;
+    std::cout << instruction_counter << " instruction(s) processed." << std::endl;
+    std::cout << script_counter << " script(s) called." << std::endl;
     std::cout << generation_counter << " new graph(s) generated." << std::endl;
 }

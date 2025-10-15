@@ -54,7 +54,8 @@ size_t split_on_char(const std::string &s, const char delimiter, std::vector<std
 }
 
 
-m1_data TSVReader::readTo(GenericGraphReader& model, std::map<std::string, std::string> meta_data, std::mt19937_64::result_type seed, bool debug=false){
+m1_data TSVReader::readTo(GenericGraphReader& model, std::map<std::string, std::string> meta_data,
+    std::mt19937_64::result_type seed, bool debug=false){
     // Read all provided Node-Files
     for (const std::string& filename : this->nodefiles) {
         std::ifstream file(filename);
@@ -76,7 +77,7 @@ m1_data TSVReader::readTo(GenericGraphReader& model, std::map<std::string, std::
             line.erase(line.length() - 1, 1);
         }
         std::vector<std::string> columns;
-        const size_t expected_nbr_of_columns = split_on_char(line, '\t', columns);
+        size_t expected_nbr_of_columns = split_on_char(line, '\t', columns);
 
         // Check if the provided structure is compatible with the provided indices.
         if (this->idx_node_id >= columns.size()) {
@@ -90,6 +91,8 @@ m1_data TSVReader::readTo(GenericGraphReader& model, std::map<std::string, std::
                 + std::to_string(highest_idx)
                 + ". Expected at least " + std::to_string(highest_idx+1) + " columns, got " + std::to_string(columns.size()) + ".");
         }
+        // We allow incomplete rows, as long as at least the number of columns we use are present.
+        expected_nbr_of_columns = std::max(highest_idx, this->idx_node_id) + 1;
 
         // Confirm the indices to the user.
         std::cout << "\t\tReading the unique node-id from column '" << columns[this->idx_node_id] << "'." << std::endl;
@@ -109,7 +112,7 @@ m1_data TSVReader::readTo(GenericGraphReader& model, std::map<std::string, std::
 
             // Split the line on the provided delimiter.
             size_t actual_nbr_of_columns = split_on_char(line, '\t', columns);
-            if (actual_nbr_of_columns != expected_nbr_of_columns) {
+            if (actual_nbr_of_columns < expected_nbr_of_columns) {
                 ++lines_skipped;
                 if (debug) {
                     std::cout << "\t\tSkipping invalid line: '" << line << "'" << std::endl;
@@ -154,7 +157,7 @@ m1_data TSVReader::readTo(GenericGraphReader& model, std::map<std::string, std::
             line.erase(line.length() - 1, 1);
         }
         std::vector<std::string> columns;
-        const size_t expected_nbr_of_columns = split_on_char(line, '\t', columns);
+        size_t expected_nbr_of_columns = split_on_char(line, '\t', columns);
 
         // Check if the provided structure is compatible with the provided indices.
         if (this->idx_start_node_id >= columns.size()) {
@@ -173,6 +176,10 @@ m1_data TSVReader::readTo(GenericGraphReader& model, std::map<std::string, std::
                 + std::to_string(highest_idx)
                 + ". Expected at least " + std::to_string(highest_idx+1) + " columns, got " + std::to_string(columns.size()) + ".");
         }
+
+        // We allow incomplete rows, as long as at least the number of columns we use are present.
+        expected_nbr_of_columns = std::max(this->idx_start_node_id, this->idx_end_node_id);
+        expected_nbr_of_columns = std::max(highest_idx, expected_nbr_of_columns) + 1;
 
         // Confirm the indices to the user.
         std::cout << "\t\tReading the unique start-node-id from column '" << columns[this->idx_start_node_id] << "'." << std::endl;
@@ -193,7 +200,7 @@ m1_data TSVReader::readTo(GenericGraphReader& model, std::map<std::string, std::
 
             // Split the line on the provided delimiter.
             size_t actual_nbr_of_columns = split_on_char(line, '\t', columns);
-            if (actual_nbr_of_columns != expected_nbr_of_columns) {
+            if (actual_nbr_of_columns < expected_nbr_of_columns) {
                 ++lines_skipped;
                 if (debug) {
                     std::cout << "\t\tSkipping invalid line: '" << line << "'" << std::endl;
