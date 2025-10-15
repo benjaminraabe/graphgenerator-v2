@@ -1,9 +1,140 @@
--execute "../scripts/scaling_test_template.s1"
-    "%NODES%"   "%BASE_PATH%/input/gen_1000_nodes.tsv"
-    "%EDGES%"   "%BASE_PATH%/input/gen_1000_edges.tsv"
-    "%OPATH%"   "%BASE_PATH%/output"
-    "%FNAME%"	"gen_1000"
+-Seed "Test2025"
+-read   +nodefile "%BASE_PATH%/input/stark_prime/nodes.tsv"
+        +edgefile "%BASE_PATH%/input/stark_prime/edges.tsv"
+        +arg name "STaRK-Prime Biomedical Dataset"
+        +arg AUTHOR "Stanford/Amazon"
+        +arg PROCESSED_BY "Lorenzo Bellomo"
+        +arg LICENSE "CC-BY-4.0 - Attribution"
 
-    "%NAME%"    "Artificial dataset (degree-distribution)"
+-save   "%BASE_PATH%/output/stark_prime_model.m1"
+-generate   "%BASE_PATH%/output/stark_prime_nodes_x1.tsv" "%BASE_PATH%/output/stark_prime_edges_x1.tsv" 1
+-Scale 2
+-generate   "%BASE_PATH%/output/stark_prime_nodes_x2.tsv" "%BASE_PATH%/output/stark_prime_edges_x2.tsv" 1
+-Scale 5
+-generate   "%BASE_PATH%/output/stark_prime_nodes_x10.tsv" "%BASE_PATH%/output/stark_prime_edges_x10.tsv" 1
+-Scale 0.05
+-generate   "%BASE_PATH%/output/stark_prime_nodes_x05.tsv" "%BASE_PATH%/output/stark_prime_edges_x05.tsv" 1
+-Scale 0.5
+-generate   "%BASE_PATH%/output/stark_prime_nodes_x025.tsv" "%BASE_PATH%/output/stark_prime_edges_x025.tsv" 1
+
+
+
+-Seed "Test2025"
+-read   +nodefile "%BASE_PATH%/input/dblp_citation/nodes.tsv"
+        +edgefile "%BASE_PATH%/input/dblp_citation/edges.tsv"
+        +edgeindex 0 2
+        +edgetypeindex 1
+        +arg name "dblp Citation Network"
+        +arg AUTHOR "Uni Trier / Schloss Dagstuhl"
+        +arg PROCESSED_BY "Lorenzo Bellomo"
+        +arg LICENSE "Creative Commons 0 - Public Domain"
+
+-save   "%BASE_PATH%/output/dblp_citation_model.m1"
+-generate   "%BASE_PATH%/output/dblp_citation_nodes_x1.tsv" "%BASE_PATH%/output/dblp_citation_edges_x1.tsv" 1
+-Scale 2
+-generate   "%BASE_PATH%/output/dblp_citation_nodes_x2.tsv" "%BASE_PATH%/output/dblp_citation_edges_x2.tsv" 1
+-Scale 5
+-generate   "%BASE_PATH%/output/dblp_citation_nodes_x10.tsv" "%BASE_PATH%/output/dblp_citation_edges_x10.tsv" 1
+-Scale 0.05
+-generate   "%BASE_PATH%/output/dblp_citation_nodes_x05.tsv" "%BASE_PATH%/output/dblp_citation_edges_x05.tsv" 1
+-Scale 0.5
+-generate   "%BASE_PATH%/output/dblp_citation_nodes_x025.tsv" "%BASE_PATH%/output/dblp_citation_edges_x025.tsv" 1
+
+
+
+-Seed "Test2025"
+-read   +nodefile "%BASE_PATH%/input/patents/nodes.tsv"
+        +edgefile "%BASE_PATH%/input/patents/edges.tsv"
+        +edgeindex 0 2
+        +edgetypeindex 1
+        +arg name "US-Patent Relationships (1976-2006)"
+        +arg AUTHOR "Patent Data Project (PDP)"
+        +arg PROCESSED_BY "Lorenzo Bellomo"
+        +arg LICENSE "Unknown"
+
+-save   "%BASE_PATH%/output/patents_model.m1"
+-generate   "%BASE_PATH%/output/patents_nodes_x1.tsv" "%BASE_PATH%/output/patents_edges_x1.tsv" 1
+-Scale 2
+-generate   "%BASE_PATH%/output/patents_nodes_x2.tsv" "%BASE_PATH%/output/patents_edges_x2.tsv" 1
+-Scale 5
+-generate   "%BASE_PATH%/output/patents_nodes_x10.tsv" "%BASE_PATH%/output/patents_edges_x10.tsv" 1
+-Scale 0.05
+-generate   "%BASE_PATH%/output/patents_nodes_x05.tsv" "%BASE_PATH%/output/patents_edges_x05.tsv" 1
+-Scale 0.5
+-generate   "%BASE_PATH%/output/patents_nodes_x025.tsv" "%BASE_PATH%/output/patents_edges_x025.tsv" 1
+
+
+
+-execute "../scripts/scaling_test_template.s1"
+    "%PATH%"  	"%BASE_PATH%"
+    "%FNAME%"	"exp"
+    "%NAME%"    "Artificial dataset (exponential distribution, ~250 nodes, lambda=5, offset=0)"
     "%AUTHOR%"	"Benjamin E. Raabe"
-    "%LICENSE%"	"Creative Commons 0 - Public Domain"    
+    "%LICENSE%"	"Creative Commons 0 - Public Domain"
+
+-execute "../scripts/scaling_test_template.s1"
+    "%PATH%"  	"%BASE_PATH%"
+    "%FNAME%"	"exp_10k"
+    "%NAME%"    "Artificial dataset (exponential distribution, ~10k nodes, lambda=5, offset=0)"
+    "%AUTHOR%"	"Benjamin E. Raabe"
+    "%LICENSE%"	"Creative Commons 0 - Public Domain"
+
+
+-execute "../scripts/scaling_test_template.s1"
+    "%PATH%"  	"%BASE_PATH%"
+    "%FNAME%"	"exp_offset"
+    "%NAME%"    "Artificial dataset (exponential distribution, ~250 nodes, lambda=5, offset=10)"
+    "%AUTHOR%"	"Benjamin E. Raabe"
+    "%LICENSE%"	"Creative Commons 0 - Public Domain"
+
+-execute "../scripts/scaling_test_template.s1"
+    "%PATH%"  	"%BASE_PATH%"
+    "%FNAME%"	"exp_offset_10k"
+    "%NAME%"    "Artificial dataset (exponential distribution, ~10k nodes, lambda=5, offset=10)"
+    "%AUTHOR%"	"Benjamin E. Raabe"
+    "%LICENSE%"	"Creative Commons 0 - Public Domain"
+
+
+-execute "../scripts/scaling_test_template.s1"
+    "%PATH%"  	"%BASE_PATH%"
+    "%FNAME%"	"norm"
+    "%NAME%"    "Artificial dataset (normal distribution, ~250 nodes, mean=15, std_dev=5)"
+    "%AUTHOR%"	"Benjamin E. Raabe"
+    "%LICENSE%"	"Creative Commons 0 - Public Domain"
+
+-execute "../scripts/scaling_test_template.s1"
+    "%PATH%"  	"%BASE_PATH%"
+    "%FNAME%"	"norm_10k"
+    "%NAME%"    "Artificial dataset (normal distribution, ~10k nodes, mean=15, std_dev=5)"
+    "%AUTHOR%"	"Benjamin E. Raabe"
+    "%LICENSE%"	"Creative Commons 0 - Public Domain"
+
+
+-execute "../scripts/scaling_test_template.s1"
+    "%PATH%"  	"%BASE_PATH%"
+    "%FNAME%"	"interm"
+    "%NAME%"    "Artificial dataset (isolated peaks in distribution, ~250 nodes, degrees between 5 and 50, peaks every 5 datapoints)"
+    "%AUTHOR%"	"Benjamin E. Raabe"
+    "%LICENSE%"	"Creative Commons 0 - Public Domain"
+
+-execute "../scripts/scaling_test_template.s1"
+    "%PATH%"  	"%BASE_PATH%"
+    "%FNAME%"	"interm_10k"
+    "%NAME%"    "Artificial dataset (isolated peaks in distribution, ~10k nodes, degrees between 5 and 50, peaks every 5 datapoints)"
+    "%AUTHOR%"	"Benjamin E. Raabe"
+    "%LICENSE%"	"Creative Commons 0 - Public Domain"
+
+
+-execute "../scripts/scaling_test_template.s1"
+    "%PATH%"  	"%BASE_PATH%"
+    "%FNAME%"	"uniform"
+    "%NAME%"    "Artificial dataset (uniform-distribution, ~250 nodes, degrees between 0 and 100)"
+    "%AUTHOR%"	"Benjamin E. Raabe"
+    "%LICENSE%"	"Creative Commons 0 - Public Domain"
+
+-execute "../scripts/scaling_test_template.s1"
+    "%PATH%"  	"%BASE_PATH%"
+    "%FNAME%"	"uniform_10k"
+    "%NAME%"    "Artificial dataset (uniform-distribution, ~10k nodes, degrees between 0 and 100)"
+    "%AUTHOR%"	"Benjamin E. Raabe"
+    "%LICENSE%"	"Creative Commons 0 - Public Domain"
