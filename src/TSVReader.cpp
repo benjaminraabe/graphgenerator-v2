@@ -3,8 +3,8 @@ class TSVReader {
 public:
     TSVReader(const std::vector<std::string> &node_file_paths,
                          const std::vector<std::string> &edge_file_paths,
-                         size_t idx_node_id, const std::vector<size_t> &idx_node_type,
-                         size_t idx_start_node_id, size_t idx_end_node_id, const std::vector<size_t> &idx_edge_type);
+                         size_t idx_node_id_, const std::vector<size_t> &idx_node_type_,
+                         size_t idx_start_node_id_, size_t idx_end_node_id_, const std::vector<size_t> &idx_edge_type_);
     ~TSVReader() = default;
 
     m1_data readTo(GenericGraphReader &model, std::map<std::string, std::string> meta_data,
@@ -25,17 +25,17 @@ protected:
 
 TSVReader::TSVReader(const std::vector<std::string> &node_file_paths,
                          const std::vector<std::string> &edge_file_paths,
-                         const size_t idx_node_id=0, const std::vector<size_t> &idx_node_type={1},
-                         const size_t idx_start_node_id=0, const size_t idx_end_node_id=1, const std::vector<size_t> &idx_edge_type={2}){
+                         const size_t idx_node_id_=0, const std::vector<size_t> &idx_node_type_={1},
+                         const size_t idx_start_node_id_=0, const size_t idx_end_node_id_=1, const std::vector<size_t> &idx_edge_type_={2}){
     this->nodefiles = node_file_paths;
     this->edgefiles = edge_file_paths;
 
-    this->idx_node_id = idx_node_id;
-    this->idx_node_type = idx_node_type;
+    this->idx_node_id = idx_node_id_;
+    this->idx_node_type = idx_node_type_;
 
-    this->idx_start_node_id = idx_start_node_id;
-    this->idx_end_node_id = idx_end_node_id;
-    this->idx_edge_type = idx_edge_type;
+    this->idx_start_node_id = idx_start_node_id_;
+    this->idx_end_node_id = idx_end_node_id_;
+    this->idx_edge_type = idx_edge_type_;
 }
 
 
