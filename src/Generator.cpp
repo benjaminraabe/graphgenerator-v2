@@ -141,6 +141,7 @@ void generate_graph(const std::string& node_file_name, const std::string& edge_f
     if (!node_file.is_open()) {
         throw std::runtime_error("Could not open output file: " + node_file_name);
     }
+    node_file << "NodeID\tNodeType" << std::endl;
     const size_t node_bytes_at_start = node_file.tellp();
 
     std::ofstream edge_file;
@@ -148,6 +149,7 @@ void generate_graph(const std::string& node_file_name, const std::string& edge_f
     if (!edge_file.is_open()) {
         throw std::runtime_error("Could not open output file: " + edge_file_name);
     }
+    edge_file << "StartNodeID\tEndNodeID\tEdgeType" << std::endl;
     const size_t edge_bytes_at_start = edge_file.tellp();
 
 
@@ -169,6 +171,7 @@ void generate_graph(const std::string& node_file_name, const std::string& edge_f
             node_file << opt_string;
         }
     }
+
     std::cout << "\t\tWrote " << static_cast<size_t>(node_file.tellp()) - node_bytes_at_start << " bytes into the provided node-file." << std:: endl;
     node_file.close();
 
