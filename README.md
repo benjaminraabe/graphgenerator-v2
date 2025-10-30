@@ -3,7 +3,7 @@ A generator for the directed degree-corrected stochastic-block model. Project fo
 
 
 ## Building
-It is recommended to compile this project with gcc. Run `cmake` and `make` in the parent directory. An optional dependency on OpenMP is included for multithreading, you can disable this in the `CMakeLists.txt`.
+It is recommended to compile this project with gcc. Run `cmake .` and `make` in the parent directory. This has been tested with Linux WSL, building and running this with Windows 10 or above is probably fine as well.
 
 
 ## Usage
